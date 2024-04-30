@@ -25,6 +25,13 @@ export async function POST(req) {
       return NextResponse.json({ code: 400, message: "Invalid credentials" });
     }
 
+    if (!user.isVerified) {
+      return NextResponse.json({
+        code: 400,
+        message: "Your request is pending",
+      });
+    }
+
     const tokenData = {
       name: user.name,
       id: user.id,

@@ -6,7 +6,6 @@ import { getUserFromSession } from "../../helpers/session";
 
 export default async function Dashboard() {
   const user = await getUserFromSession();
-  console.log(null);
   if (!user) {
     return redirect("/login");
   }
@@ -18,7 +17,10 @@ export default async function Dashboard() {
 
   return (
     <div>
-      <h3>Dashboard</h3>
+      <div className="flex justify-between px-10 screen ">
+        <h3>Dashboard</h3>
+        <p>{user.name}</p>
+      </div>
       <form action={handleLogout}>
         <button type="submit">Logout</button>
       </form>
